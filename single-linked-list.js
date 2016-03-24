@@ -31,20 +31,20 @@ SinglyLinkedList.prototype.remove = function(data) {
   //TODO
   while(!current){
   	if(current.data==data){
-  		if(current=this.head){
+  		if(current===this.head){
   			this.head=current.next;
   		}
-  		if(current=this.tail){
+  		if(current===this.tail){
   			this.tail=previous;
   		}
   		previous.next=current.next;
   		this.numberOfValues-=1;
+  	}
   	else{
   		previous=current;
   	}
   	current=current.next;
 	}
-  }
 };
 
 SinglyLinkedList.prototype.insertAfter = function(data, toNodeData) {
@@ -53,35 +53,36 @@ SinglyLinkedList.prototype.insertAfter = function(data, toNodeData) {
   //TODO
   while(!current){
   	if(current.data==toNodeData){
-  		if(current=this.tail){
+  		if(current===this.tail){
   			current.next=node;
   			this.tail=node;
   		}else{
   			node.next=current.next;
-  			current.next=node;	
+  			current.nextitem=node;	
   		}
-  		numberOfValues+=1;
+  		this.numberOfValues+=1;
   	}
-  	current=current.next;
+  	current=current.nextitem;
   }
 };
 
 SinglyLinkedList.prototype.length = function() {
   //TODO
-  return numberOfValues;
+  return this.numberOfValues;
 };
 
 SinglyLinkedList.prototype.print = function() {
   //TODO
   var string='';
-  while(!current){
-  	string=string+current.data+' ';
+  var current=this.head;
+  while(current){
+  	string=string+current.data.toString()+' ';
   }
   console.log(string);
 };
 
 
-
+var singlyLinkedList=new SinglyLinkedList();
 singlyLinkedList.print(); // => ''
 singlyLinkedList.add(1);
 singlyLinkedList.add(2);
