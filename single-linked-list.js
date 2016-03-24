@@ -13,8 +13,14 @@ SinglyLinkedList.prototype.add = function(data) {
   var node = new Node(data);
   if(!this.head) {
     //TODO
+    this.tail.next=node;
+    this.tail=node;
+    this.numberOfValues+=1;
   } else {
     //TODO
+    this.head=node;
+    this.tail=node;
+    this.numberOfValues+=1;
   }
 
 };
@@ -23,23 +29,59 @@ SinglyLinkedList.prototype.remove = function(data) {
   var previous = this.head;
   var current = this.head;
   //TODO
+  while(!current){
+  	if(current.data==data){
+  		if(current=this.head){
+  			this.head=current.next;
+  		}
+  		if(current=this.tail){
+  			this.tail=previous;
+  		}
+  		previous.next=current.next;
+  		this.numberOfValues-=1;
+  	else{
+  		previous=current;
+  	}
+  	current=current.next;
+	}
+  }
 };
 
 SinglyLinkedList.prototype.insertAfter = function(data, toNodeData) {
   var current = this.head;
+  var node=new Node(data);
   //TODO
+  while(!current){
+  	if(current.data==toNodeData){
+  		if(current=this.tail){
+  			current.next=node;
+  			this.tail=node;
+  		}else{
+  			node.next=current.next;
+  			current.next=node;	
+  		}
+  		numberOfValues+=1;
+  	}
+  	current=current.next;
+  }
 };
 
 SinglyLinkedList.prototype.length = function() {
   //TODO
+  return numberOfValues;
 };
 
 SinglyLinkedList.prototype.print = function() {
   //TODO
+  var string='';
+  while(!current){
+  	string=string+current.data+' ';
+  }
+  console.log(string);
 };
 
 
-/*
+
 singlyLinkedList.print(); // => ''
 singlyLinkedList.add(1);
 singlyLinkedList.add(2);
@@ -72,7 +114,7 @@ singlyLinkedList.print(); // => 2 3 4 5 6 7 8
 console.log('length is 7:', singlyLinkedList.length()); // => 7
 singlyLinkedList.print(); // => 12 13 14 15 16 17 18
 console.log('length is 7:', singlyLinkedList.length()); // => 7
-*/
+
 
 
 module.exports = {
