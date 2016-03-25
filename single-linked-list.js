@@ -11,7 +11,7 @@ function SinglyLinkedList() {
 
 SinglyLinkedList.prototype.add = function(data) {
   var node = new Node(data);
-  if(!this.head) {
+  if(this.head!=null) {
     //TODO
     this.tail.next=node;
     this.tail=node;
@@ -29,20 +29,18 @@ SinglyLinkedList.prototype.remove = function(data) {
   var previous = this.head;
   var current = this.head;
   //TODO
-  while(!current){
+  while(current!=null){
   	if(current.data==data){
-  		if(current===this.head){
+  		if(current==this.head){
   			this.head=current.next;
   		}
-  		if(current===this.tail){
+  		if(current==this.tail){
   			this.tail=previous;
   		}
-  		previous.next=current.next;
+      previous.next=current.next;
   		this.numberOfValues-=1;
   	}
-  	else{
-  		previous=current;
-  	}
+  	previous=current;
   	current=current.next;
 	}
 };
@@ -51,18 +49,18 @@ SinglyLinkedList.prototype.insertAfter = function(data, toNodeData) {
   var current = this.head;
   var node=new Node(data);
   //TODO
-  while(!current){
+  while(current!=null){
   	if(current.data==toNodeData){
-  		if(current===this.tail){
+  		if(current==this.tail){
   			current.next=node;
   			this.tail=node;
   		}else{
   			node.next=current.next;
-  			current.nextitem=node;	
+  			current.next=node;	
   		}
   		this.numberOfValues+=1;
   	}
-  	current=current.nextitem;
+  	current=current.next;
   }
 };
 
@@ -75,8 +73,9 @@ SinglyLinkedList.prototype.print = function() {
   //TODO
   var string='';
   var current=this.head;
-  while(current){
+  while(current!=null){
   	string=string+current.data.toString()+' ';
+    current=current.next;
   }
   console.log(string);
 };
